@@ -1,3 +1,4 @@
+import tkinter
 from tkinter import *
 from tkinter import ttk
 from PIL import Image, ImageTk
@@ -40,10 +41,10 @@ def mentee_login():
                 text=f'{mentee_username_entry.get()} is not in our system. Please create an account or try again.')
         else:
             # bg_label.grid_forget()
-            mentee_login_page.forget()
-            box1.grid_forget()
+            mentee_login_page.grid_forget()
             mentee_message_label.config(text=" ")
             mentee_welcomepg.grid()
+
     except AttributeError:
         mentee_message_label.config(text=f'{mentee_username_entry.get()}, your password is incorrect. Please try again.')
 
@@ -392,7 +393,7 @@ home_button.grid(row=9, column=0, columnspan=3)
 
 
 ############################################################### MENTEE WELCOME
-mentee_welcomepg = Frame(window, width=1280, height=800)
+mentee_welcomepg = Frame(window, width=1280, height=800, borderwidth=1)
 
 mentor_selection_img = Image.open('whiteBackground.jpg')
 new_width6 = 1280
@@ -403,66 +404,83 @@ bg6 = ImageTk.PhotoImage(wallpaper6)
 bg_label6 = Label(mentee_welcomepg, image=bg6)
 bg_label6.grid(row=0, column=0, rowspan=2, columnspan=1)
 
-box3 = Frame(mentee_welcomepg, bg='white', width=450, height=300, borderwidth=2, relief=RAISED)
-box3.grid(row=0, column=0)
+mentor_list_box = Frame(mentee_welcomepg, bg='white', width=450, height=300, borderwidth=2, relief=RAISED)
+mentor_list_box.grid(row=0, column=0)
 
 rock = Image.open('rock.jpg')
 new_width4 = 200
 new_height4 = 200
 rock2 = rock.resize((new_width4, new_height4), Image.Resampling.LANCZOS)
 rock2.save('rock.jpg')
-physical = ImageTk.PhotoImage(rock)
+theRock = ImageTk.PhotoImage(rock)
 
 wahlberg = Image.open('mark.jpg')
-new_width4 = 200
-new_height4 = 200
-wahlberg2 = wahlberg.resize((new_width4, new_height4), Image.Resampling.LANCZOS)
+new_width5 = 200
+new_height5 = 200
+wahlberg2 = wahlberg.resize((new_width5, new_height5), Image.Resampling.LANCZOS)
 wahlberg2.save('mark.jpg')
-accounting = ImageTk.PhotoImage(wahlberg)
+accounting = ImageTk.PhotoImage(wahlberg2)
 
 zuck = Image.open('markZuck.jpg')
-new_width4 = 200
-new_height4 = 200
-zuck2 = zuck.resize((new_width4, new_height4), Image.Resampling.LANCZOS)
+new_width6 = 200
+new_height6 = 200
+zuck2 = zuck.resize((new_width6, new_height6), Image.Resampling.LANCZOS)
 zuck2.save('markZuck.jpg')
-compsci = ImageTk.PhotoImage(zuck)
+zuckerberg = ImageTk.PhotoImage(zuck2)
 
 nat = Image.open('nat.jpg')
-new_width4 = 200
-new_height4 = 200
-nat2 = nat.resize((new_width4, new_height4), Image.Resampling.LANCZOS)
+new_width7 = 200
+new_height7 = 200
+nat2 = nat.resize((new_width7, new_height7), Image.Resampling.LANCZOS)
 nat2.save('nat.jpg')
-science = ImageTk.PhotoImage(nat)
+portman = ImageTk.PhotoImage(nat2)
 
+description = "The Rock"
 var = StringVar(window, "1")
-r1 = Radiobutton(box3, text='rock', variable=var, value='rock', image=physical, font=('Impact', 40))
-r1.grid(row=3, column=0, sticky=W)
-rock_lbl = Label(box3, justify=CENTER, font=('Impact', 30), bg='white', text='ROCK')
-rock_lbl.grid(row=4, column=0, sticky=W, padx=70)
-r2 = Radiobutton(box3, text='walhberg', variable=var, value='walhberg', image=physical, font=('Impact', 40))
-r2.grid(row=3, column=0, sticky=W, padx=250)
-walhberg_lbl = Label(box3, justify=CENTER, font=('Impact', 30), bg='white', text='WALHBERG')
-walhberg_lbl.grid(row=4, column=0, sticky=W, padx=70)
-r3 = Radiobutton(box3, text='zuck', variable=var, value='zuck', image=physical, font=('Impact', 40))
-r3.grid(row=3, column=0, sticky=W, padx=500)
-zuck_lbl = Label(box3, justify=CENTER, font=('Impact', 30), bg='white', text='ZUCK')
-zuck_lbl.grid(row=4, column=0, sticky=W, padx=70)
-r4 = Radiobutton(box3, text='nat', variable=var, value='nat', image=physical, font=('Impact', 40))
-r4.grid(row=3, column=0, sticky=W, padx=750)
-nat_lbl = Label(box3, justify=CENTER, font=('Impact', 30), bg='white', text='NAT')
-nat_lbl.grid(row=4, column=0, sticky=W, padx=70)
 
-
-welcome_label = Label(box3, text=f'WELCOME TO DACAT Mentorship Network.', font=('Impact', 40),
+welcome_label = Label(mentor_list_box, text=f'Welcome to DACAT Mentorship Network.', font=('Bodoni MT', 40),
                       bg='white')
 welcome_label.grid(row=0, column=0,sticky=W)
 
+buttonRock = tkinter.Button(mentor_list_box, image=theRock)
+buttonRock.grid(row=1, column=0, sticky=W)
+rock_label = Label(mentor_list_box, text=f'Major: Computer Information Systems', font=('Bodoni MT', 12),
+                      bg='white')
+rock_label.grid(row=2, column=0, sticky=W)
+buttonZuck = tkinter.Button(mentor_list_box, image=zuckerberg)
+buttonZuck.grid(row=1, column=0)
+zuck_label = Label(mentor_list_box, text=f'Major: Computer Science & Management', font=('Bodoni MT', 12),
+                      bg='white')
+zuck_label.grid(row=2, column=0)
+buttonNat = tkinter.Button(mentor_list_box, image=portman)
+buttonNat.grid(row=1, column=0, sticky=E)
+nat_label = Label(mentor_list_box, text=f'Major: Finance & Data Analytics', font=('Bodoni MT', 12),
+                      bg='white')
+nat_label.grid(row=2, column=0, sticky=E)
+# r1 = Radiobutton(box3, text=description, variable=var, value='rock', image=physical, font=('Impact', 40))
+# r1.grid(row=3, column=0, sticky=W)
+# rock_lbl = Label(box3, justify=CENTER, font=('Impact', 30), bg='white', text='ROCK')
+# rock_lbl.grid(row=4, column=0, sticky=W, padx=70)
+# r2 = Radiobutton(box3, text='walhberg', variable=var, value='walhberg', image=accounting, font=('Impact', 40))
+# r2.grid(row=3, column=0, sticky=W, padx=250)
+# walhberg_lbl = Label(box3, justify=CENTER, font=('Impact', 30), bg='white', text='WALHBERG')
+# walhberg_lbl.grid(row=4, column=0, sticky=W, padx=70)
+# r3 = Radiobutton(box3, text='zuck', variable=var, value='zuck', image=compsci, font=('Impact', 40))
+# r3.grid(row=3, column=0, sticky=W, padx=500)
+# zuck_lbl = Label(box3, justify=CENTER, font=('Impact', 30), bg='white', text='ZUCK')
+# zuck_lbl.grid(row=4, column=0, sticky=W, padx=70)
+# r4 = Radiobutton(box3, text=description, variable=var, value='nat', image=science, font=('Impact', 40))
+# r4.grid(row=3, column=0, sticky=W, padx=750)
+# nat_lbl = Label(box3, justify=CENTER, font=('Impact', 30), bg='white', text=description)
+# nat_lbl.grid(row=4, column=0, sticky=W, padx=70)
+
+
 
 # select button
-select_button = Button(box3, command=select_button_click, font=('Impact', 20), text='Select',
+select_button = Button(mentor_list_box, command=select_button_click, font=('Bodoni MT', 20), text='Select',
                        relief=GROOVE, bg='black', fg='white')
-select_button.grid(row=9, column=0, columnspan=3)
-####################################################################################################### MENTEE PAGES END
+select_button.grid(row=5, column=0, columnspan=3)
+###################################################################################################### MENTEE PAGES END
 
 
 ########################################################################################################### MENTOR PAGES
