@@ -4,7 +4,7 @@ from tkinter import ttk
 from PIL import Image, ImageTk
 # from classes import BookHotel
 from os import path
-import time
+from time import strftime
 import json
 import csv
 
@@ -17,7 +17,12 @@ f1 = open('mentees.json')
 mentees_accounts = json.load(f1)
 f1.close()
 
-
+def show_time():
+    time = strftime("%H:%M:%S")
+    date = strftime('%Y/%m/%d')
+    set_text = f"{time} \n {date}"
+    date_time.configure(text=set_text, font=("Calibri", 15, "bold"), bg="black", fg="white")
+    date_time.after(100, show_time)
 def mentor_login():
     try:
         result = any(mentor_password_entry.get() in d.values() for d in mentors_accounts.values())
@@ -44,6 +49,11 @@ def mentee_login():
             mentee_login_page.grid_forget()
             mentee_message_label.config(text=" ")
             mentee_welcomepg.grid()
+            # sidebarFrame.grid(row=0, column=0, columnspan=1, sticky=N)
+            editProfile_button.grid(row=0, column=0,pady=40, sticky=N)
+            logout_button.grid(row=0, column=0, pady=40, sticky=NE)
+            date_time.grid(row=0, column=0, pady=40,padx=20, sticky=NW)
+            show_time()
 
     except AttributeError:
         mentee_message_label.config(text=f'{mentee_username_entry.get()}, your password is incorrect. Please try again.')
@@ -393,7 +403,7 @@ home_button.grid(row=9, column=0, columnspan=3)
 
 
 ############################################################### MENTEE WELCOME
-mentee_welcomepg = Frame(window, width=1280, height=800, borderwidth=1)
+mentee_welcomepg = Frame(window, width=1280, height=800)
 
 mentor_selection_img = Image.open('whiteBackground.jpg')
 new_width6 = 1280
@@ -404,7 +414,7 @@ bg6 = ImageTk.PhotoImage(wallpaper6)
 bg_label6 = Label(mentee_welcomepg, image=bg6)
 bg_label6.grid(row=0, column=0, rowspan=2, columnspan=1)
 
-mentor_list_box = Frame(mentee_welcomepg, bg='white', width=450, height=300, borderwidth=2, relief=RAISED)
+mentor_list_box = Frame(mentee_welcomepg, bg='white', width=450, height=300)
 mentor_list_box.grid(row=0, column=0)
 
 rock = Image.open('rock.jpg')
@@ -441,6 +451,17 @@ var = StringVar(window, "1")
 welcome_label = Label(mentor_list_box, text=f'Welcome to DACAT Mentorship Network.', font=('Bodoni MT', 40),
                       bg='white')
 welcome_label.grid(row=0, column=0,sticky=W)
+
+# sidebarFrame = Frame(window, bg='black', width=1280, height=120)
+
+editProfile_button = Button(window, font=('Bodoni MT', 20), text='Edit User Profile',
+                       fg='black')
+logout_button = Button(window, font=('Bodoni MT', 20), text='Log Out',
+                       fg='black')
+date_time = Label(window)
+
+
+
 
 buttonRock = tkinter.Button(mentor_list_box, image=theRock)
 buttonRock.grid(row=1, column=0, sticky=W)
