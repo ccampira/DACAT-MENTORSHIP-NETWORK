@@ -4,7 +4,7 @@ from tkinter import ttk
 from PIL import Image, ImageTk
 # from classes import BookHotel
 from os import path
-import time
+from time import strftime
 import json
 import csv
 
@@ -23,8 +23,8 @@ class NewWindow(Toplevel):
     def __init__(self, master=None):
         super().__init__(master=master)
         self.title("Dwayne Johnson's Mentor Profile")
-        self.geometry("1280x800")
-        rock_frame = Frame(self, bg='white', width=1280, height=800, borderwidth=2, relief=RAISED)
+        self.geometry("800x550")
+        rock_frame = Frame(self, bg='white', width=800, height=600)
         rock_frame.grid(row=0, column=0)
 
         buttonRock1 = tkinter.Button(rock_frame, image=theRock)
@@ -81,6 +81,22 @@ class NewWindow4(Toplevel):
         label = Label(self, text="Hi My names Bill, a current professional in the industry")
         label.grid()
 
+
+class NewWindow5(Toplevel):
+
+    def __init__(self, master=None):
+        super().__init__(master=master)
+        self.title("New Mentor Profile")
+        self.geometry("1280x800")
+        label = Label(self, text="Hi My names Jake, a current professional in the industry")
+        label.grid()
+
+def show_time():
+    time = strftime("%H:%M:%S")
+    date = strftime('%Y/%m/%d')
+    set_text = f"{time} \n {date}"
+    date_time.configure(text=set_text, font=("Calibri", 15, "bold"), bg="black", fg="white")
+    date_time.after(100, show_time)
 def mentor_login():
     try:
         result = any(mentor_password_entry.get() in d.values() for d in mentors_accounts.values())
@@ -107,6 +123,11 @@ def mentee_login():
             mentee_login_page.grid_forget()
             mentee_message_label.config(text=" ")
             mentee_welcomepg.grid()
+            # sidebarFrame.grid(row=0, column=0, columnspan=1, sticky=N)
+            editProfile_button.grid(row=0, column=0,pady=8, sticky=N)
+            logout_button.grid(row=0, column=0, pady=8, sticky=NE)
+            date_time.grid(row=0, column=0, pady=10,padx=8, sticky=NW)
+            show_time()
 
     except AttributeError:
         mentee_message_label.config(text=f'{mentee_username_entry.get()}, your password is incorrect. Please try again.')
@@ -127,6 +148,12 @@ def add_new_mentor():
         json.dump(mentors_accounts, f)
 
     mentor_create_label.config(text=f'Thank you {mentor_newusername}, your Mentor account has been created!')
+    buttonavatar = tkinter.Button(mentor_list_box, image=ava)
+    buttonavatar.bind("<Button>", lambda e: NewWindow5(mentor_list_box))
+    buttonavatar.grid(row=3, column=0, sticky=E)
+    avatar_label = Label(mentor_list_box, text=f'Computer Information Systems', font=('Bodoni MT', 12),
+                         bg='white')
+    avatar_label.grid(row=4, column=0, sticky=E)
 
 
 def add_new_mentee():
@@ -226,20 +253,11 @@ def select_button_click():
     # bg_label.grid(row=0, column=0, rowspan=2, columnspan=1)
     # box1.grid(row=0, column=0)
 
-# def page1():
-#     page2text.pack_forget()
-#     page1text.pack()
 
-# def page2():
-#     page1text.pack_forget()
-#     page2text.pack()
 # def final():
     # page_three.grid_forget()
     # final_page.grid()
     # final_page.columnconfigure(0, weight=3)
-
-
-
 
 def close():
     window.destroy()
@@ -249,6 +267,8 @@ def close():
     # page_two.grid_forget()
     # page_three.grid()
     # page_three.columnconfigure(0, weight=3)
+
+
 
 
 window = Tk()
@@ -514,6 +534,13 @@ bill2 = bill.resize((new_width8, new_height8), Image.Resampling.LANCZOS)
 bill2.save('bill.jpg')
 gates = ImageTk.PhotoImage(bill2)
 
+avatar = Image.open('avatar.jpeg')
+new_width9 = 200
+new_height9 = 200
+avatar2 = avatar.resize((new_width9, new_height9), Image.Resampling.LANCZOS)
+avatar2.save('avatar.jpeg')
+ava = ImageTk.PhotoImage(avatar2)
+
 description = "The Rock"
 var = StringVar(window, "1")
 
@@ -555,6 +582,17 @@ buttonbill.grid(row=3, column=0)
 bill_label = Label(mentor_list_box, text=f'Computer Information Systems', font=('Bodoni MT', 12),
                       bg='white')
 bill_label.grid(row=4, column=0)
+
+
+
+
+
+
+editProfile_button = Button(window, font=('Bodoni MT', 17), text='Edit User Profile',
+                       fg='black')
+logout_button = Button(window, font=('Bodoni MT', 17), text='Log Out',
+                       fg='black')
+date_time = Label(window)
 
 # page1text = tkinter.Label(window, text="This is page 1")
 # page2text = tkinter.Label(window, text="this is page 2")
