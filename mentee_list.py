@@ -68,76 +68,170 @@ class NewWindow(Toplevel):
         super().__init__(master=master)
         self.title("Dwayne Johnson's Mentor Profile")
         self.geometry("800x550")
-        rock_frame = Frame(self, bg='white', width=800, height=600)
+        rock_frame = Frame(self, bg='white', width=800, height=550, borderwidth=2, relief=RAISED)
         rock_frame.grid(row=0, column=0)
 
         buttonRock1 = tkinter.Button(rock_frame, image=theRock)
         buttonRock1.grid(row=1, column=0, pady=30, padx=5)
         rock_label1 = Label(rock_frame, text=f'Dwayne Johnson', font=('Bodoni MT', 20),
-                            bg='white')
+                           bg='white')
         rock_label1.grid(row=2, column=0, pady=10, padx=5)
         rock_label2 = Label(rock_frame, text=f'Major: Computer Information Systems', font=('Bodoni MT', 20),
-                            bg='white')
+                           bg='white')
         rock_label2.grid(row=3, column=0, pady=10, padx=5)
-        rock_label3 = Label(rock_frame,
-                            text=f'Hi My names Dwayne, a current professional in the industry of software development\n'
-                                 f'I am eager to mentor and teach incoming ASU professionals or Alumni\n'
-                                 f'I have over 10 years of experience in development and would love to share\n'
-                                 f'what I have learned over the past 10 years with you!', font=('Bodoni MT', 16),
-                            bg='white')
+        rock_label3 = Label(rock_frame, text=f'Hi My names Dwayne, a current professional in the industry of info systems\n'
+                                             f'I want to mentor someone interested in data science or analytics\n'
+                                             f'I have 4 years of experience in both and want to give a motivated\n'
+                                             f'individual advice on how to be successful in your early career.', font=('Bodoni MT', 16),
+                           bg='white')
         rock_label3.grid(row=4, column=0, pady=30, padx=20)
+        rock_label4 = Label(rock_frame, text=f'Phone Number: #480-123-5678\n'
+                                             f'E-mail: DJohnson@gmail.com', font=('Bodoni MT', 12),
+                            bg='white')
+        rock_label4.grid(row=1, column=0, pady=5, padx=5, sticky=W)
+
 
         # label = Label(self, text="Hi My names Dwayne, a current professional in the industry")
-
 
 class NewWindow1(Toplevel):
 
     def __init__(self, master=None):
         super().__init__(master=master)
         self.title("Mark Walhberg's Mentor Profile")
-        self.geometry("1280x800")
-        label = Label(self, text="Hi My names Mark, a current professional in the industry")
-        label.grid()
+        self.geometry("800x550")
+        walhberg_frame = Frame(self, bg='white', width=800, height=550, borderwidth=2, relief=RAISED)
+        walhberg_frame.grid(row=0, column=0)
 
+        buttonwalhberg1 = tkinter.Button(walhberg_frame, image=mwahlberg)
+        buttonwalhberg1.grid(row=1, column=0, pady=30, padx=5)
+        walhberg_label1 = Label(walhberg_frame, text=f'Mark Walhberg', font=('Bodoni MT', 20),
+                           bg='white')
+        walhberg_label1.grid(row=2, column=0, pady=10, padx=5)
+        walhberg_label2 = Label(walhberg_frame, text=f'Major: Software Development & Communications', font=('Bodoni MT', 20),
+                           bg='white')
+        walhberg_label2.grid(row=3, column=0, pady=10, padx=5)
+        walhberg_label3 = Label(walhberg_frame, text=f'Hi My names Mark, a current professional in the industry of software development\n'
+                                             f'I am eager to mentor and teach incoming ASU professionals or Alumni\n'
+                                             f'I have over 10 years of experience in development and would love to share\n'
+                                             f'what I have learned over the past 10 years with you!', font=('Bodoni MT', 16),
+                           bg='white')
+        walhberg_label3.grid(row=4, column=0, pady=30, padx=20)
+        walhberg_label4 = Label(walhberg_frame, text=f'Phone Number: #480-321-5678\n'
+                                             f'E-mail: MWalhberg@gmail.com', font=('Bodoni MT', 12),
+                            bg='white')
+        walhberg_label4.grid(row=1, column=0, pady=5, padx=5, sticky=W)
 
 class NewWindow2(Toplevel):
 
     def __init__(self, master=None):
         super().__init__(master=master)
         self.title("Mark Zuckerberg Mentor's Profile")
-        self.geometry("1280x800")
-        label = Label(self, text="Hi My names Mark, a current professional in the industry")
-        label.grid()
+        self.geometry("800x550")
+        zuck_frame = Frame(self, bg='white', width=800, height=550, borderwidth=2, relief=RAISED)
+        zuck_frame.grid(row=0, column=0)
 
+        buttonzuck1 = tkinter.Button(zuck_frame, image=zuckerberg)
+        buttonzuck1.grid(row=1, column=0, pady=30, padx=5)
+        zuck_label1 = Label(zuck_frame, text=f'Mark Zuckerberg', font=('Bodoni MT', 20),
+                           bg='white')
+        zuck_label1.grid(row=2, column=0, pady=10, padx=5)
+        zuck_label2 = Label(zuck_frame, text=f'Major: Computer Science & Management', font=('Bodoni MT', 20),
+                           bg='white')
+        zuck_label2.grid(row=3, column=0, pady=10, padx=5)
+        zuck_label3 = Label(zuck_frame, text=f'Hi My names Mark, a current professional in the computer science industry\n'
+                                             f'I would love to teach someone who is likes to code and learn new software\n'
+                                             f'I have over 35 years of experience in computer science and want\n'
+                                             f'to give insight on how to succeed and improve in the industry', font=('Bodoni MT', 16),
+                           bg='white')
+        zuck_label3.grid(row=4, column=0, pady=30, padx=20)
+        zuck_label4 = Label(zuck_frame, text=f'Phone Number: #480-777-5678\n'
+                                             f'E-mail: MZuck@gmail.com', font=('Bodoni MT', 12),
+                            bg='white')
+        zuck_label4.grid(row=1, column=0, pady=5, padx=5, sticky=W)
 
 class NewWindow3(Toplevel):
 
     def __init__(self, master=None):
         super().__init__(master=master)
         self.title("Natalie Portman's Mentor Profile")
-        self.geometry("1280x800")
-        label = Label(self, text="Hi My names Natalie, a current professional in the industry")
-        label.grid()
+        self.geometry("800x550")
+        nat_frame = Frame(self, bg='white', width=800, height=550, borderwidth=2, relief=RAISED)
+        nat_frame.grid(row=0, column=0)
 
+        buttonnat1 = tkinter.Button(nat_frame, image=portman)
+        buttonnat1.grid(row=1, column=0, pady=30, padx=5)
+        nat_label1 = Label(nat_frame, text=f'Natalie Portman', font=('Bodoni MT', 20),
+                           bg='white')
+        nat_label1.grid(row=2, column=0, pady=10, padx=5)
+        nat_label2 = Label(nat_frame, text=f'Major: Finance & Data Analytics', font=('Bodoni MT', 20),
+                           bg='white')
+        nat_label2.grid(row=3, column=0, pady=10, padx=5)
+        nat_label3 = Label(nat_frame, text=f'Hi My names Natalie, a current professional in the industry finance & analytics\n'
+                                             f'I am looking to mentor someone who is interested in fin tech\n'
+                                             f'I have over 5 years of experience in fin tech and would love to share\n'
+                                             f'my experiences and how to excel your career', font=('Bodoni MT', 16),
+                           bg='white')
+        nat_label3.grid(row=4, column=0, pady=30, padx=20)
+        nat_label4 = Label(nat_frame, text=f'Phone Number: #480-666-5678\n'
+                                             f'E-mail: NPortman@gmail.com', font=('Bodoni MT', 12),
+                            bg='white')
+        nat_label4.grid(row=1, column=0, pady=5, padx=5, sticky=W)
 
 class NewWindow4(Toplevel):
 
     def __init__(self, master=None):
         super().__init__(master=master)
         self.title("Bill Gates' Mentor Profile")
-        self.geometry("1280x800")
-        label = Label(self, text="Hi My names Bill, a current professional in the industry")
-        label.grid()
+        self.geometry("800x550")
+        bill_frame = Frame(self, bg='white', width=800, height=550, borderwidth=2, relief=RAISED)
+        bill_frame.grid(row=0, column=0)
 
+        buttonbill1 = tkinter.Button(bill_frame, image=gates)
+        buttonbill1.grid(row=1, column=0, pady=30, padx=5)
+        bill_label1 = Label(bill_frame, text=f'Bill Gates', font=('Bodoni MT', 20),
+                           bg='white')
+        bill_label1.grid(row=2, column=0, pady=10, padx=5)
+        bill_label2 = Label(bill_frame, text=f'Major: Business Data Analytics', font=('Bodoni MT', 20),
+                           bg='white')
+        bill_label2.grid(row=3, column=0, pady=10, padx=5)
+        bill_label3 = Label(bill_frame, text=f'Hi My names Bill, a current professional in the industry of data analytics\n'
+                                             f'I look forward to mentoring someone new every year!\n'
+                                             f'I have 20 years of experience in analytics and would love to share\n'
+                                             f'what I have learned over the past 20 years with someone motivated!', font=('Bodoni MT', 16),
+                           bg='white')
+        bill_label3.grid(row=4, column=0, pady=30, padx=20)
+        bill_label4 = Label(bill_frame, text=f'Phone Number: #480-444-5678\n'
+                                             f'E-mail: BGates@gmail.com', font=('Bodoni MT', 12),
+                            bg='white')
+        bill_label4.grid(row=1, column=0, pady=5, padx=5, sticky=W)
 
 class NewWindow5(Toplevel):
 
     def __init__(self, master=None):
         super().__init__(master=master)
         self.title("New Mentor Profile")
-        self.geometry("1280x800")
-        label = Label(self, text="Hi My names Jake, a current professional in the industry")
-        label.grid()
+        self.geometry("800x550")
+        avatar_frame = Frame(self, bg='white', width=800, height=550, borderwidth=2, relief=RAISED)
+        avatar_frame.grid(row=0, column=0)
+
+        buttonavatar1 = tkinter.Button(avatar_frame, image=ava)
+        buttonavatar1.grid(row=1, column=0, pady=30, padx=5)
+        avatar_label1 = Label(avatar_frame, text=f'Jake', font=('Bodoni MT', 20),
+                           bg='white')
+        avatar_label1.grid(row=2, column=0, pady=10, padx=5)
+        avatar_label2 = Label(avatar_frame, text=f'Major: Computer Information Systems', font=('Bodoni MT', 20),
+                           bg='white')
+        avatar_label2.grid(row=3, column=0, pady=10, padx=5)
+        avatar_label3 = Label(avatar_frame, text=f'Hi My names Jake, a new professional in the industry of information systems\n'
+                                             f'I am eager to become mentor and teach incoming ASU professionals or Alumni\n'
+                                             f'I have 2 years of experience in data science and would love to share\n'
+                                             f'what I have learned over the past couple of years with you!', font=('Bodoni MT', 16),
+                           bg='white')
+        avatar_label3.grid(row=4, column=0, pady=30, padx=20)
+        avatar_label4 = Label(avatar_frame, text=f'Phone Number: #480-000-5678\n'
+                                             f'E-mail: Avatar@gmail.com', font=('Bodoni MT', 12),
+                            bg='white')
+        avatar_label4.grid(row=1, column=0, pady=5, padx=5, sticky=W)
 
 
 def show_time():
