@@ -86,7 +86,7 @@ class NewWindow(Toplevel):
                            bg='white')
         rock_label3.grid(row=4, column=0, pady=30, padx=20)
         rock_label4 = Label(rock_frame, text=f'Phone Number: #480-123-5678\n'
-                                             f'E-mail: DJohnson@gmail.com', font=('Bodoni MT', 12),
+                                             f'E-mail: DJohnson@gmail.com', font=('Bodoni MT', 11),
                             bg='white')
         rock_label4.grid(row=1, column=0, pady=5, padx=5, sticky=W)
 
@@ -117,7 +117,7 @@ class NewWindow1(Toplevel):
                            bg='white')
         walhberg_label3.grid(row=4, column=0, pady=30, padx=20)
         walhberg_label4 = Label(walhberg_frame, text=f'Phone Number: #480-321-5678\n'
-                                             f'E-mail: MWalhberg@gmail.com', font=('Bodoni MT', 12),
+                                             f'E-mail: MWalhberg@gmail.com', font=('Bodoni MT', 11),
                             bg='white')
         walhberg_label4.grid(row=1, column=0, pady=5, padx=5, sticky=W)
 
@@ -145,7 +145,7 @@ class NewWindow2(Toplevel):
                            bg='white')
         zuck_label3.grid(row=4, column=0, pady=30, padx=20)
         zuck_label4 = Label(zuck_frame, text=f'Phone Number: #480-777-5678\n'
-                                             f'E-mail: MZuck@gmail.com', font=('Bodoni MT', 12),
+                                             f'E-mail: MZuck@gmail.com', font=('Bodoni MT', 11),
                             bg='white')
         zuck_label4.grid(row=1, column=0, pady=5, padx=5, sticky=W)
 
@@ -201,7 +201,7 @@ class NewWindow4(Toplevel):
                            bg='white')
         bill_label3.grid(row=4, column=0, pady=30, padx=20)
         bill_label4 = Label(bill_frame, text=f'Phone Number: #480-444-5678\n'
-                                             f'E-mail: BGates@gmail.com', font=('Bodoni MT', 12),
+                                             f'E-mail: BGates@gmail.com', font=('Bodoni MT', 10),
                             bg='white')
         bill_label4.grid(row=1, column=0, pady=5, padx=5, sticky=W)
 
@@ -229,7 +229,7 @@ class NewWindow5(Toplevel):
                            bg='white')
         avatar_label3.grid(row=4, column=0, pady=30, padx=20)
         avatar_label4 = Label(avatar_frame, text=f'Phone Number: #480-000-5678\n'
-                                             f'E-mail: Avatar@gmail.com', font=('Bodoni MT', 12),
+                                             f'E-mail: Avatar@gmail.com', font=('Bodoni MT', 11),
                             bg='white')
         avatar_label4.grid(row=1, column=0, pady=5, padx=5, sticky=W)
 
