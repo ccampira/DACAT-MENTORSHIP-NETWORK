@@ -1,0 +1,28 @@
+{
+  "name": "chat-module",
+  "version": "1.0.0",
+  "description": "Chat between mentors and mentees",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon ./server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mentors",
+    "mentees"
+  ],
+  "author": "Abdullah",
+  "license": "ISC",
+  "dependencies": {
+    "@socket.io/redis-adapter": "^7.1.0",
+    "@socket.io/sticky": "^1.0.1",
+    "express": "^4.17.3",
+    "firebase": "^8.10.0",
+    "jsonwebtoken": "^8.5.1",
+    "nodemon": "^2.0.20",
+    "redis": "^3.0.0",
+    "socket.io": "^4.1.2",
+    "socket.io-redis": "^6.1.1",
+    "uuid": "^8.3.2"
+  }
+}

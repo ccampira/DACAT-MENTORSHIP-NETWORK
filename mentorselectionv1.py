@@ -7,6 +7,8 @@ from os import path
 from time import strftime
 import json
 import csv
+from chat_config import Chat
+import socketio 
 
 
 f = open('mentors.json')
@@ -16,6 +18,12 @@ f.close()
 f1 = open('mentees.json')
 mentees_accounts = json.load(f1)
 f1.close()
+
+try:
+    socket_connection = socketio.Client()
+    socket_connection.connect('http://localhost:3000')
+except:
+   print('Could not connect to socket ')
 
 
 class NewWindow(Toplevel):
@@ -108,6 +116,12 @@ def mentor_login():
             box1.grid_forget()
             mentor_message_label.config(text=" ")
             mentor_welcomepg.grid()
+            global current_user
+            current_user = mentor_username_entry.get()
+            print('mentor socket id',socket_connection.sid)
+            mentors_accounts[mentor_username_entry.get()]['SOCKET_ID'] = socket_connection.sid
+            with open('mentors.json', 'w', newline='') as f:
+                 json.dump(mentors_accounts, f)
     except AttributeError:
         mentor_message_label.config(text=f'{mentor_username_entry.get()}, your password is incorrect. Please try again.')
 
@@ -128,6 +142,12 @@ def mentee_login():
             logout_button.grid(row=0, column=0, pady=8, sticky=NE)
             date_time.grid(row=0, column=0, pady=10,padx=8, sticky=NW)
             show_time()
+            global current_user
+            current_user = mentee_username_entry.get()
+            print('mentee socket id',socket_connection.sid)
+            mentees_accounts[mentee_username_entry.get()]['SOCKET_ID'] = socket_connection.sid
+            with open('mentees.json', 'w', newline='') as f:
+                 json.dump(mentees_accounts, f)
 
     except AttributeError:
         mentee_message_label.config(text=f'{mentee_username_entry.get()}, your password is incorrect. Please try again.')
@@ -258,6 +278,9 @@ def select_button_click():
     # page_three.grid_forget()
     # final_page.grid()
     # final_page.columnconfigure(0, weight=3)
+
+def sendMessage():
+    chat = Chat(current_user)
 
 def close():
     window.destroy()

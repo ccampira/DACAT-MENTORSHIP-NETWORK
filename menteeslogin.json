@@ -1,1 +1,5 @@
-{"duhhvonne": {"Password": "pwd1", "Email": "devonne@asu.edu"}, "mentee": {"Password": "password", "Email": "mentee@asu.edu"}, "newuser": {"Password": "newpwd", "Email": "joe@asu.edu"}}
+{
+  "duhhvonne": { "Password": "pwd1", "Email": "devonne@asu.edu" },
+  "mentee": { "Password": "password", "Email": "mentee@asu.edu" },
+  "newuser": { "Password": "newpwd", "Email": "joe@asu.edu" }
+}
