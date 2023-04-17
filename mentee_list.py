@@ -10,10 +10,9 @@ import csv
 from tkinter import filedialog
 from tkinter.filedialog import askopenfile
 from chat_config import Chat
-import socketio 
+import socketio
 
 global mentees_accounts
-
 
 f = open('mentors.json')
 mentors_accounts = json.load(f)
@@ -31,7 +30,7 @@ try:
     socket_connection = socketio.Client()
     socket_connection.connect('http://localhost:3000')
 except:
-   print('Could not connect to socket ')
+    print('Could not connect to socket ')
 
 
 def upload_file():
@@ -41,11 +40,10 @@ def upload_file():
     profile_pic = profile.resize((150, 150))  # new width & height
     profile_pic.save('profile_pic.jpg')
     view = ImageTk.PhotoImage(profile_pic)
-    e1= Label(create_box)
+    e1 = Label(create_box)
     e1.grid(row=7, column=1)
     e1.image = view
     e1['image'] = view
-
 
     buttonavatar = tkinter.Button(mentor_list_box, image=view, width=200, height=200)
     buttonavatar.bind("<Button>", lambda e: NewWindow5(mentor_list_box))
@@ -53,6 +51,8 @@ def upload_file():
     avatar_label = Label(mentor_list_box, text=f'Computer Information Systems', font=('Bodoni MT', 12),
                          bg='white')
     avatar_label.grid(row=4, column=0, sticky=E)
+
+
 ############################ mentor page - mentee list
 def load_json_from_file():
     global mentees
@@ -103,24 +103,26 @@ class NewWindow(Toplevel):
         buttonRock1 = tkinter.Button(rock_frame, image=theRock)
         buttonRock1.grid(row=1, column=0, pady=30, padx=5)
         rock_label1 = Label(rock_frame, text=f'Dwayne Johnson', font=('Bodoni MT', 20),
-                           bg='white')
+                            bg='white')
         rock_label1.grid(row=2, column=0, pady=10, padx=5)
         rock_label2 = Label(rock_frame, text=f'Major: Computer Information Systems', font=('Bodoni MT', 20),
-                           bg='white')
+                            bg='white')
         rock_label2.grid(row=3, column=0, pady=10, padx=5)
-        rock_label3 = Label(rock_frame, text=f'Hi My names Dwayne, a current professional in the industry of info systems\n'
-                                             f'I want to mentor someone interested in data science or analytics\n'
-                                             f'I have 4 years of experience in both and want to give a motivated\n'
-                                             f'individual advice on how to be successful in your early career.', font=('Bodoni MT', 16),
-                           bg='white')
+        rock_label3 = Label(rock_frame,
+                            text=f'Hi My names Dwayne, a current professional in the industry of info systems\n'
+                                 f'I want to mentor someone interested in data science or analytics\n'
+                                 f'I have 4 years of experience in both and want to give a motivated\n'
+                                 f'individual advice on how to be successful in your early career.',
+                            font=('Bodoni MT', 16),
+                            bg='white')
         rock_label3.grid(row=4, column=0, pady=30, padx=20)
         rock_label4 = Label(rock_frame, text=f'Phone Number: #480-123-5678\n'
                                              f'E-mail: DJohnson@gmail.com', font=('Bodoni MT', 11),
                             bg='white')
         rock_label4.grid(row=1, column=0, pady=5, padx=5, sticky=W)
 
-
         # label = Label(self, text="Hi My names Dwayne, a current professional in the industry")
+
 
 class NewWindow1(Toplevel):
 
@@ -134,21 +136,24 @@ class NewWindow1(Toplevel):
         buttonwalhberg1 = tkinter.Button(walhberg_frame, image=mwahlberg)
         buttonwalhberg1.grid(row=1, column=0, pady=30, padx=5)
         walhberg_label1 = Label(walhberg_frame, text=f'Mark Walhberg', font=('Bodoni MT', 20),
-                           bg='white')
+                                bg='white')
         walhberg_label1.grid(row=2, column=0, pady=10, padx=5)
-        walhberg_label2 = Label(walhberg_frame, text=f'Major: Software Development & Communications', font=('Bodoni MT', 20),
-                           bg='white')
+        walhberg_label2 = Label(walhberg_frame, text=f'Major: Software Development & Communications',
+                                font=('Bodoni MT', 20),
+                                bg='white')
         walhberg_label2.grid(row=3, column=0, pady=10, padx=5)
-        walhberg_label3 = Label(walhberg_frame, text=f'Hi My names Mark, a current professional in the industry of software development\n'
-                                             f'I am eager to mentor and teach incoming ASU professionals or Alumni\n'
-                                             f'I have over 10 years of experience in development and would love to share\n'
-                                             f'what I have learned over the past 10 years with you!', font=('Bodoni MT', 16),
-                           bg='white')
+        walhberg_label3 = Label(walhberg_frame,
+                                text=f'Hi My names Mark, a current professional in the industry of software development\n'
+                                     f'I am eager to mentor and teach incoming ASU professionals or Alumni\n'
+                                     f'I have over 10 years of experience in development and would love to share\n'
+                                     f'what I have learned over the past 10 years with you!', font=('Bodoni MT', 16),
+                                bg='white')
         walhberg_label3.grid(row=4, column=0, pady=30, padx=20)
         walhberg_label4 = Label(walhberg_frame, text=f'Phone Number: #480-321-5678\n'
-                                             f'E-mail: MWalhberg@gmail.com', font=('Bodoni MT', 11),
-                            bg='white')
+                                                     f'E-mail: MWalhberg@gmail.com', font=('Bodoni MT', 11),
+                                bg='white')
         walhberg_label4.grid(row=1, column=0, pady=5, padx=5, sticky=W)
+
 
 class NewWindow2(Toplevel):
 
@@ -162,21 +167,24 @@ class NewWindow2(Toplevel):
         buttonzuck1 = tkinter.Button(zuck_frame, image=zuckerberg)
         buttonzuck1.grid(row=1, column=0, pady=30, padx=5)
         zuck_label1 = Label(zuck_frame, text=f'Mark Zuckerberg', font=('Bodoni MT', 20),
-                           bg='white')
+                            bg='white')
         zuck_label1.grid(row=2, column=0, pady=10, padx=5)
         zuck_label2 = Label(zuck_frame, text=f'Major: Computer Science & Management', font=('Bodoni MT', 20),
-                           bg='white')
+                            bg='white')
         zuck_label2.grid(row=3, column=0, pady=10, padx=5)
-        zuck_label3 = Label(zuck_frame, text=f'Hi My names Mark, a current professional in the computer science industry\n'
-                                             f'I would love to teach someone who is likes to code and learn new software\n'
-                                             f'I have over 35 years of experience in computer science and want\n'
-                                             f'to give insight on how to succeed and improve in the industry', font=('Bodoni MT', 16),
-                           bg='white')
+        zuck_label3 = Label(zuck_frame,
+                            text=f'Hi My names Mark, a current professional in the computer science industry\n'
+                                 f'I would love to teach someone who is likes to code and learn new software\n'
+                                 f'I have over 35 years of experience in computer science and want\n'
+                                 f'to give insight on how to succeed and improve in the industry',
+                            font=('Bodoni MT', 16),
+                            bg='white')
         zuck_label3.grid(row=4, column=0, pady=30, padx=20)
         zuck_label4 = Label(zuck_frame, text=f'Phone Number: #480-777-5678\n'
                                              f'E-mail: MZuck@gmail.com', font=('Bodoni MT', 11),
                             bg='white')
         zuck_label4.grid(row=1, column=0, pady=5, padx=5, sticky=W)
+
 
 class NewWindow3(Toplevel):
 
@@ -195,16 +203,18 @@ class NewWindow3(Toplevel):
         nat_label2 = Label(nat_frame, text=f'Major: Finance & Data Analytics', font=('Bodoni MT', 20),
                            bg='white')
         nat_label2.grid(row=3, column=0, pady=10, padx=5)
-        nat_label3 = Label(nat_frame, text=f'Hi My names Natalie, a current professional in the industry finance & analytics\n'
-                                             f'I am looking to mentor someone who is interested in fin tech\n'
-                                             f'I have over 5 years of experience in fin tech and would love to share\n'
-                                             f'my experiences and how to excel your career', font=('Bodoni MT', 16),
+        nat_label3 = Label(nat_frame,
+                           text=f'Hi My names Natalie, a current professional in the industry finance & analytics\n'
+                                f'I am looking to mentor someone who is interested in fin tech\n'
+                                f'I have over 5 years of experience in fin tech and would love to share\n'
+                                f'my experiences and how to excel your career', font=('Bodoni MT', 16),
                            bg='white')
         nat_label3.grid(row=4, column=0, pady=30, padx=20)
         nat_label4 = Label(nat_frame, text=f'Phone Number: #480-666-5678\n'
-                                             f'E-mail: NPortman@gmail.com', font=('Bodoni MT', 12),
-                            bg='white')
+                                           f'E-mail: NPortman@gmail.com', font=('Bodoni MT', 12),
+                           bg='white')
         nat_label4.grid(row=1, column=0, pady=5, padx=5, sticky=W)
+
 
 class NewWindow4(Toplevel):
 
@@ -218,16 +228,18 @@ class NewWindow4(Toplevel):
         buttonbill1 = tkinter.Button(bill_frame, image=gates)
         buttonbill1.grid(row=1, column=0, pady=30, padx=5)
         bill_label1 = Label(bill_frame, text=f'Bill Gates', font=('Bodoni MT', 20),
-                           bg='white')
+                            bg='white')
         bill_label1.grid(row=2, column=0, pady=10, padx=5)
         bill_label2 = Label(bill_frame, text=f'Major: Business Data Analytics', font=('Bodoni MT', 20),
-                           bg='white')
+                            bg='white')
         bill_label2.grid(row=3, column=0, pady=10, padx=5)
-        bill_label3 = Label(bill_frame, text=f'Hi My names Bill, a current professional in the industry of data analytics\n'
-                                             f'I look forward to mentoring someone new every year!\n'
-                                             f'I have 20 years of experience in analytics and would love to share\n'
-                                             f'what I have learned over the past 20 years with someone motivated!', font=('Bodoni MT', 16),
-                           bg='white')
+        bill_label3 = Label(bill_frame,
+                            text=f'Hi My names Bill, a current professional in the industry of data analytics\n'
+                                 f'I look forward to mentoring someone new every year!\n'
+                                 f'I have 20 years of experience in analytics and would love to share\n'
+                                 f'what I have learned over the past 20 years with someone motivated!',
+                            font=('Bodoni MT', 16),
+                            bg='white')
         bill_label3.grid(row=4, column=0, pady=30, padx=20)
         bill_label4 = Label(bill_frame, text=f'Phone Number: #480-444-5678\n'
                                              f'E-mail: BGates@gmail.com', font=('Bodoni MT', 10),
@@ -273,10 +285,10 @@ def mentor_login():
             load_list_with_json()
             global current_user
             current_user = mentor_username_entry.get()
-            print('mentor socket id',socket_connection.sid)
+            print('mentor socket id', socket_connection.sid)
             mentors_accounts[mentor_username_entry.get()]['SOCKET_ID'] = socket_connection.sid
             with open('mentors.json', 'w', newline='') as f:
-                 json.dump(mentors_accounts, f)
+                json.dump(mentors_accounts, f)
     except AttributeError:
         mentor_message_label.config(
             text=f'{mentor_username_entry.get()}, your password is incorrect. Please try again.')
@@ -301,11 +313,11 @@ def mentee_login():
             show_time()
             global current_user
             current_user = mentee_username_entry.get()
-            print('mentee socket id',socket_connection.sid)
+            print('mentee socket id', socket_connection.sid)
             user_socket = socket_connection.sid
             mentees_accounts[1]['SOCKET_ID'] = socket_connection.sid
             with open('mentees.json', 'w', newline='') as f:
-                 json.dump(mentees_accounts, f)
+                json.dump(mentees_accounts, f)
 
     except AttributeError:
         mentee_message_label.config(
@@ -338,7 +350,8 @@ def add_new_mentee():
     mentees_login[mentee_newusername]['Password'] = mentee_newpassword
     mentees_login[mentee_newusername]['Email'] = mentee_email
 
-    mentees_accounts.append({'username': mentee_newusername, 'name': mentee_fullname, 'email': mentee_email, 'cellphone': mentee_phone})
+    mentees_accounts.append(
+        {'username': mentee_newusername, 'name': mentee_fullname, 'email': mentee_email, 'cellphone': mentee_phone})
     # mentees_accounts[mentee_newusername] = dict()
     # mentees_accounts[mentee_newusername]['name'] = mentee_fullname
     # mentees_accounts[mentee_newusername]['email'] = mentee_email
@@ -351,7 +364,6 @@ def add_new_mentee():
         json.dump(mentees_accounts, f1)
 
     mentee_create_label.config(text=f'Thank you {mentee_newusername}, your Mentee account has been created!')
-
 
 
 def choose_mentor():
@@ -446,7 +458,6 @@ def mentee_logout():
     # bg_label.grid(row=0, column=0, rowspan=2, columnspan=1)
     # box1.grid(row=0, column=0)
     socket_connection.disconnect()
-  
 
 
 def mentor_logout():
@@ -464,17 +475,18 @@ def mentor_logout():
     # box1.grid(row=0, column=0)
 
 
-
 # def final():
 # page_three.grid_forget()
 # final_page.grid()
 # final_page.columnconfigure(0, weight=3)
 
 def sendMessage():
-    chat = Chat(current_user,'mentee')
+    chat = Chat(current_user, 'mentee')
+
 
 def sendMessageToMentee():
-    chat = Chat(current_user,'mentor')
+    chat = Chat(current_user, 'mentor')
+
 
 def close():
     window.destroy()
@@ -500,13 +512,13 @@ def overwrite_user_info():
     with open('menteeslogin.json', 'w') as f:
         json.dump(data, f)
     edit_success_label.config(
-                text=("Success! You have edited your account information!"))
+        text=("Success! You have edited your account information!"))
+
 
 # def next_button_click():
 # page_two.grid_forget()
 # page_three.grid()
 # page_three.columnconfigure(0, weight=3)
-
 
 
 window = Tk()
@@ -685,7 +697,7 @@ Login_label = Label(create_box, text='Create Your Mentee Account', width=40, fon
 Login_label.grid(columnspan=3, row=0, column=0, pady=20)
 
 fullname_label = Label(create_box, text='Enter Full Name: ', justify=CENTER, font=('Calibri', 12), bg='#fbfbfb',
-                          fg='black')
+                       fg='black')
 fullname_label.grid(row=1, column=0, pady=5, padx=100, sticky=W, columnspan=2)
 mentee_fullname_textbox = Entry(create_box, justify=LEFT, font=('Calibri', 12))
 mentee_fullname_textbox.grid(row=1, column=1, pady=1, padx=100, sticky=W, columnspan=2)
@@ -750,8 +762,6 @@ bg_label6.grid(row=0, column=0, rowspan=2, columnspan=1)
 
 mentor_list_box = Frame(mentee_welcomepg, bg='white', width=1000, height=600, borderwidth=2, relief=RAISED)
 mentor_list_box.grid(row=0, column=0)
-
-
 
 # send_message_button_mentee = Button(mentee_welcomepg, font=('Bodoni MT', 17), text='Send Message',
 #                        fg='black',relief=GROOVE,command=sendMessage)
@@ -848,30 +858,24 @@ mentee_logout_button = Button(window, font=('Bodoni MT', 17), text='Log Out',
                               fg='black', command=mentee_logout)
 date_time = Label(window)
 
-
 ############################################################################################################ EDIT PROFILE PAGE
-
-
 
 
 user_profile_frame = Frame(window, bg='white', width=1280, height=800, borderwidth=1)
 
-
-current_name_label = tkinter.Label(user_profile_frame, text="Current Username",bg='white')
+current_name_label = tkinter.Label(user_profile_frame, text="Current Username", bg='white')
 current_name_label.grid(row=0, column=0)
 # current_email_label = tkinter.Label(user_profile_frame, text="Current Email",bg='white')
 # current_email_label.grid(row=0, column=1)
-current_password_label = tkinter.Label(user_profile_frame, text="Current Password",bg='white')
+current_password_label = tkinter.Label(user_profile_frame, text="Current Password", bg='white')
 current_password_label.grid(row=0, column=2)
 
-
-name_label = tkinter.Label(user_profile_frame, text="New Username",bg='white')
+name_label = tkinter.Label(user_profile_frame, text="New Username", bg='white')
 name_label.grid(row=3, column=0)
 # email_label = tkinter.Label(user_profile_frame, text="New Email",bg='white')
 # email_label.grid(row=3, column=1)
-password_label = tkinter.Label(user_profile_frame, text="New Password",bg='white')
+password_label = tkinter.Label(user_profile_frame, text="New Password", bg='white')
 password_label.grid(row=3, column=2)
-
 
 name_entry = tkinter.Entry(user_profile_frame)
 # email_entry = tkinter.Entry(user_profile_frame)
@@ -884,10 +888,8 @@ currentName_entry.grid(row=2, column=1)
 # currentEmail_entry = tkinter.Entry(user_profile_frame, textvariable=(mentee_email), state='readonly')
 # currentName_entry.grid(row=2, column=2)
 
-edit_success_label = Label(user_profile_frame, font=('Bodoni MT', 12),bg='white', wraplength=210)
+edit_success_label = Label(user_profile_frame, font=('Bodoni MT', 12), bg='white', wraplength=210)
 edit_success_label.grid(columnspan=3, row=7, column=0)
-
-
 
 name_entry.grid(row=4, column=0)
 # email_entry.grid(row=4, column=1)
@@ -897,15 +899,12 @@ currentName_entry.grid(row=2, column=0)
 # currentEmail_entry.grid(row=2, column=1)
 currentPassword_entry.grid(row=2, column=2)
 
-
-edit_button = Button(user_profile_frame,command=overwrite_user_info, font=('Bodoni MT', 12), text='Edit Profile',
-                       fg='black', relief="groove")
+edit_button = Button(user_profile_frame, command=overwrite_user_info, font=('Bodoni MT', 12), text='Edit Profile',
+                     fg='black', relief="groove")
 edit_button.grid(row=5, column=0, columnspan=3)
 
-
-
-editProfile_button = Button(window,command=editProfilePage, font=('Bodoni MT', 20), text='Edit User Profile',
-                       fg='black')
+editProfile_button = Button(window, command=editProfilePage, font=('Bodoni MT', 20), text='Edit User Profile',
+                            fg='black')
 logout_button = Button(window, font=('Bodoni MT', 20), text='Log Out',
                        fg='black')
 date_time = Label(window)
@@ -944,8 +943,8 @@ select_button = Button(mentor_list_box, command=select_button_click, font=('Bodo
 select_button.grid(row=5, column=0, columnspan=3)
 
 send_message_button = Button(mentor_list_box, font=('Bodoni MT', 17), text='Send Message',
-                       fg='black',relief=GROOVE,command=sendMessage)
-send_message_button.grid(row=6,column=0,columnspan=1,pady=5)
+                             fg='black', relief=GROOVE, command=sendMessage)
+send_message_button.grid(row=6, column=0, columnspan=1, pady=5)
 ###################################################################################################### MENTEE PAGES END
 
 
@@ -1062,8 +1061,8 @@ mentee_q1_entry = Entry(create_box, font=('Arial', 12), width=60, textvariable=m
 mentee_q1_entry.place(relwidth=0.9, relheight=0.2, relx=0.05, rely=0.4)
 
 upload_button = Button(create_box, text='Upload Profile Picture',
-   width=20,command = lambda:upload_file())
-upload_button.grid(row=6,column=1)
+                       width=20, command=lambda: upload_file())
+upload_button.grid(row=6, column=1)
 
 create_button = Button(create_box, font=("Bodoni MT", 12), text='Create', width=10, command=add_new_mentor, relief=FLAT,
                        bg='#ffa440', fg='white')
@@ -1073,7 +1072,7 @@ mentor_create_label = Label(create_box, text=' ', width=45, bg='white', font=('C
 mentor_create_label.grid(row=8, column=0, pady=30, columnspan=3)
 
 home_button = Button(create_box, command=mentor_back_to_login, font=('Bodoni MT', 12), text='Back to Login',
-                       fg='black', relief="groove")
+                     fg='black', relief="groove")
 home_button.grid(row=8, column=0, columnspan=3, sticky=W)
 
 # blank_label = Label(create_box, text='\n\n\n ', width=60, bg='white', font=('Calibri', 12), fg='black')
@@ -1115,12 +1114,8 @@ mentee_list.column('#3', anchor='w', width=140, stretch=False)
 mentee_list.column('#4', anchor='w', width=140, stretch=False)
 
 send_message_buttonm = Button(mentee_list_box, font=('Bodoni MT', 17), text='Send Message',
-                       fg='black',relief=GROOVE,command=sendMessageToMentee)
-send_message_buttonm.grid(row=15,column=0,columnspan=1)
-
-
-
-
+                              fg='black', relief=GROOVE, command=sendMessageToMentee)
+send_message_buttonm.grid(row=15, column=0, columnspan=1)
 
 # # Background IMAGE
 # bg2_img = Image.open('wallpaper2.jpg')

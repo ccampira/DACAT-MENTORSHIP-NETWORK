@@ -10,6 +10,9 @@ import csv
 from tkinter import filedialog
 from tkinter.filedialog import askopenfile
 
+from chat_config import Chat
+import socketio
+
 global mentees_accounts
 
 
@@ -24,6 +27,12 @@ f1.close()
 f2 = open('menteeslogin.json')
 mentees_login = json.load(f2)
 f2.close()
+
+try:
+    socket_connection = socketio.Client()
+    socket_connection.connect('http://localhost:3000')
+except:
+    print('Could not connect to socket ')
 
 
 def upload_file():
@@ -263,6 +272,12 @@ def mentor_login():
             date_time.grid(row=0, column=0, pady=10, padx=8, sticky=NW)
             show_time()
             load_list_with_json()
+            global current_user
+            current_user = mentor_username_entry.get()
+            print('mentor socket id', socket_connection.sid)
+            mentors_accounts[mentor_username_entry.get()]['SOCKET_ID'] = socket_connection.sid
+            with open('mentors.json', 'w', newline='') as f:
+                json.dump(mentors_accounts, f)
     except AttributeError:
         mentor_message_label.config(
             text=f'{mentor_username_entry.get()}, your password is incorrect. Please try again.')
@@ -285,6 +300,13 @@ def mentee_login():
             mentee_logout_button.grid(row=0, column=0, pady=8, sticky=NE)
             date_time.grid(row=0, column=0, pady=10, padx=8, sticky=NW)
             show_time()
+            global current_user
+            current_user = mentee_username_entry.get()
+            print('mentee socket id', socket_connection.sid)
+            user_socket = socket_connection.sid
+            mentees_accounts[1]['SOCKET_ID'] = socket_connection.sid
+            with open('mentees.json', 'w', newline='') as f:
+                json.dump(mentees_accounts, f)
 
     except AttributeError:
         mentee_message_label.config(
@@ -424,6 +446,7 @@ def mentee_logout():
     user_profile_frame.grid_forget()
     # bg_label.grid(row=0, column=0, rowspan=2, columnspan=1)
     # box1.grid(row=0, column=0)
+    socket_connection.disconnect()
 
 
 def mentor_logout():
@@ -438,12 +461,20 @@ def mentor_logout():
     mentor_password_entry.delete(0, END)
     # bg_label.grid(row=0, column=0, rowspan=2, columnspan=1)
     # box1.grid(row=0, column=0)
+    socket_connection.disconnect()
 
 
 # def final():
 # page_three.grid_forget()
 # final_page.grid()
 # final_page.columnconfigure(0, weight=3)
+
+def sendMessage():
+    chat = Chat(current_user, 'mentee')
+
+
+def sendMessageToMentee():
+    chat = Chat(current_user, 'mentor')
 
 def close():
     window.destroy()
@@ -905,6 +936,11 @@ date_time = Label(window)
 select_button = Button(mentor_list_box, command=select_button_click, font=('Bodoni MT', 20), text='Select',
                        relief=GROOVE, bg='black', fg='white')
 select_button.grid(row=5, column=0, columnspan=3)
+
+send_message_button = Button(mentor_list_box, font=('Bodoni MT', 17), text='Send Message',
+                             fg='black', relief=GROOVE, command=sendMessage)
+send_message_button.grid(row=6, column=0, columnspan=1, pady=5)
+
 ###################################################################################################### MENTEE PAGES END
 
 
@@ -1072,6 +1108,10 @@ mentee_list.column('#1', anchor='w', width=140, stretch=True)
 mentee_list.column('#2', anchor='w', width=140, stretch=False)
 mentee_list.column('#3', anchor='w', width=140, stretch=False)
 mentee_list.column('#4', anchor='w', width=140, stretch=False)
+
+send_message_buttonm = Button(mentee_list_box, font=('Bodoni MT', 17), text='Send Message',
+                              fg='black', relief=GROOVE, command=sendMessageToMentee)
+send_message_buttonm.grid(row=15, column=0, columnspan=1)
 
 
 
