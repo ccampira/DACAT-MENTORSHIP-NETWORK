@@ -7,6 +7,8 @@ from os import path
 from time import strftime
 import json
 import csv
+from tkinter import filedialog
+from tkinter.filedialog import askopenfile
 
 global mentees_accounts
 
@@ -24,6 +26,25 @@ mentees_login = json.load(f2)
 f2.close()
 
 
+def upload_file():
+    f_types = [('Jpg Files', '*.jpg')]
+    filename = filedialog.askopenfilename(filetypes=f_types)
+    profile = Image.open(filename)
+    profile_pic = profile.resize((150, 150))  # new width & height
+    profile_pic.save('profile_pic.jpg')
+    view = ImageTk.PhotoImage(profile_pic)
+    e1= Label(create_box)
+    e1.grid(row=7, column=1)
+    e1.image = view
+    e1['image'] = view
+
+
+    buttonavatar = tkinter.Button(mentor_list_box, image=view, width=200, height=200)
+    buttonavatar.bind("<Button>", lambda e: NewWindow5(mentor_list_box))
+    buttonavatar.grid(row=3, column=0, sticky=E)
+    avatar_label = Label(mentor_list_box, text=f'Computer Information Systems', font=('Bodoni MT', 12),
+                         bg='white')
+    avatar_label.grid(row=4, column=0, sticky=E)
 ############################ mentor page - mentee list
 def load_json_from_file():
     global mentees
@@ -205,33 +226,15 @@ class NewWindow4(Toplevel):
                             bg='white')
         bill_label4.grid(row=1, column=0, pady=5, padx=5, sticky=W)
 
+
 class NewWindow5(Toplevel):
 
     def __init__(self, master=None):
         super().__init__(master=master)
         self.title("New Mentor Profile")
-        self.geometry("800x550")
-        avatar_frame = Frame(self, bg='white', width=800, height=550, borderwidth=2, relief=RAISED)
-        avatar_frame.grid(row=0, column=0)
-
-        buttonavatar1 = tkinter.Button(avatar_frame, image=ava)
-        buttonavatar1.grid(row=1, column=0, pady=30, padx=5)
-        avatar_label1 = Label(avatar_frame, text=f'Jake', font=('Bodoni MT', 20),
-                           bg='white')
-        avatar_label1.grid(row=2, column=0, pady=10, padx=5)
-        avatar_label2 = Label(avatar_frame, text=f'Major: Computer Information Systems', font=('Bodoni MT', 20),
-                           bg='white')
-        avatar_label2.grid(row=3, column=0, pady=10, padx=5)
-        avatar_label3 = Label(avatar_frame, text=f'Hi My names Jake, a new professional in the industry of information systems\n'
-                                             f'I am eager to become mentor and teach incoming ASU professionals or Alumni\n'
-                                             f'I have 2 years of experience in data science and would love to share\n'
-                                             f'what I have learned over the past couple of years with you!', font=('Bodoni MT', 16),
-                           bg='white')
-        avatar_label3.grid(row=4, column=0, pady=30, padx=20)
-        avatar_label4 = Label(avatar_frame, text=f'Phone Number: #480-000-5678\n'
-                                             f'E-mail: Avatar@gmail.com', font=('Bodoni MT', 11),
-                            bg='white')
-        avatar_label4.grid(row=1, column=0, pady=5, padx=5, sticky=W)
+        self.geometry("1280x800")
+        label = Label(self, text=mentee_q1_entry.get())
+        label.grid()
 
 
 def show_time():
@@ -301,12 +304,6 @@ def add_new_mentor():
         json.dump(mentors_accounts, f)
 
     mentor_create_label.config(text=f'Thank you {mentor_newusername}, your Mentor account has been created!')
-    buttonavatar = tkinter.Button(mentor_list_box, image=ava)
-    buttonavatar.bind("<Button>", lambda e: NewWindow5(mentor_list_box))
-    buttonavatar.grid(row=3, column=0, sticky=E)
-    avatar_label = Label(mentor_list_box, text=f'Computer Information Systems', font=('Bodoni MT', 12),
-                         bg='white')
-    avatar_label.grid(row=4, column=0, sticky=E)
 
 
 def add_new_mentee():
@@ -464,11 +461,11 @@ def overwrite_user_info():
     with open('menteeslogin.json', 'r') as f:
         data = json.load(f)
     data[mentee_username.get()]["Password"] = password_entry.get()
-    data[mentee_username.get()]['Email'] = email_entry.get()
+    # data[mentee_username.get()]['Email'] = email_entry.get()
     data[name_entry.get()] = data.pop(mentee_username.get())
     mentee_username.set(name_entry.get())
     mentee_password.set(password_entry.get())
-    mentee_email.set(email_entry.get())
+    # mentee_email.set(email_entry.get())
     with open('menteeslogin.json', 'w') as f:
         json.dump(data, f)
     edit_success_label.config(
@@ -573,6 +570,7 @@ mentor_button.grid(row=4, column=0, pady=10, columnspan=4)
 mentee_username = StringVar()
 mentee_password = StringVar()
 mentee_email = StringVar()
+mentor_description = StringVar()
 
 # Mentee Login PAGE
 mentee_login_page = Frame(window, bg='white', width=1280, height=800, borderwidth=1)
@@ -758,12 +756,12 @@ bill2 = bill.resize((new_width8, new_height8), Image.Resampling.LANCZOS)
 bill2.save('bill.jpg')
 gates = ImageTk.PhotoImage(bill2)
 
-avatar = Image.open('avatar.jpeg')
-new_width9 = 200
-new_height9 = 200
-avatar2 = avatar.resize((new_width9, new_height9), Image.Resampling.LANCZOS)
-avatar2.save('avatar.jpeg')
-ava = ImageTk.PhotoImage(avatar2)
+# avatar = Image.open('avatar.jpeg')
+# new_width9 = 200
+# new_height9 = 200
+# avatar2 = avatar.resize((new_width9, new_height9), Image.Resampling.LANCZOS)
+# avatar2.save('avatar.jpeg')
+# ava = ImageTk.PhotoImage(avatar2)
 
 description = "The Rock"
 var = StringVar(window, "1")
@@ -1019,20 +1017,39 @@ mentor_q1_label.grid(row=4, column=0, pady=5, padx=100, columnspan=3)
 blank_label = Label(create_box, text='\n\n\n ', width=60, bg='white', font=('Calibri', 12), fg='black')
 blank_label.grid(row=5, column=0, pady=30, columnspan=3)
 
-mentee_q1_entry = Text(create_box, font=('Arial', 12), height=30)
+mentee_q1_entry = Entry(create_box, font=('Arial', 12), width=60, textvariable=mentor_description)
 mentee_q1_entry.place(relwidth=0.9, relheight=0.2, relx=0.05, rely=0.4)
-# mentee_q1_entry.grid(row=5, column=0, pady=5, columnspan=3, padx=30)
+
+upload_button = Button(create_box, text='Upload Profile Picture',
+   width=20,command = lambda:upload_file())
+upload_button.grid(row=6,column=1)
 
 create_button = Button(create_box, font=("Bodoni MT", 12), text='Create', width=10, command=add_new_mentor, relief=FLAT,
                        bg='#ffa440', fg='white')
-create_button.grid(column=0, row=7, pady=30, columnspan=3)
+create_button.grid(column=0, row=8, pady=30, columnspan=3, sticky=E)
 
-mentor_create_label = Label(create_box, text=' ', width=60, bg='white', font=('Calibri', 12), fg='black')
+mentor_create_label = Label(create_box, text=' ', width=45, bg='white', font=('Calibri', 12), fg='black')
 mentor_create_label.grid(row=8, column=0, pady=30, columnspan=3)
 
 home_button = Button(create_box, command=mentor_back_to_login, font=('Bodoni MT', 12), text='Back to Login',
-                     fg='black', relief="groove")
-home_button.grid(row=9, column=0, columnspan=3)
+                       fg='black', relief="groove")
+home_button.grid(row=8, column=0, columnspan=3, sticky=W)
+
+# blank_label = Label(create_box, text='\n\n\n ', width=60, bg='white', font=('Calibri', 12), fg='black')
+# blank_label.grid(row=5, column=0, pady=30, columnspan=3)
+#
+
+#
+# create_button = Button(create_box, font=("Bodoni MT", 12), text='Create', width=10, command=add_new_mentor, relief=FLAT,
+#                        bg='#ffa440', fg='white')
+# create_button.grid(column=0, row=7, pady=30, columnspan=3)
+#
+# mentor_create_label = Label(create_box, text=' ', width=60, bg='white', font=('Calibri', 12), fg='black')
+# mentor_create_label.grid(row=8, column=0, pady=30, columnspan=3)
+#
+# home_button = Button(create_box, command=mentor_back_to_login, font=('Bodoni MT', 12), text='Back to Login',
+#                      fg='black', relief="groove")
+# home_button.grid(row=9, column=0, columnspan=3)
 
 ################################################### MENTOR WELCOME
 mentor_welcomepg = Frame(window, width=1920, height=1080)
