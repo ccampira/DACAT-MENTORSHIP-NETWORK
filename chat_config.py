@@ -119,7 +119,7 @@ class Chat():
         self.messagesList.insert(0, "Hey there")
 
     @sio.on('group_posted')
-    def on_message(self, data):
+    def on_message(data):
         print(data)
         # self.messagesList.insert(self.messagesList.size()+1,'RECEIVED : '+data)
         print('I received a message!')
