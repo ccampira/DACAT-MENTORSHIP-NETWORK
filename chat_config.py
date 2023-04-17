@@ -5,9 +5,10 @@ import socketio
 import json
 
 class Chat():
-    
     sio = socketio.Client()
-    def __init__(self,current_user) -> None:
+    
+    def __init__(self,current_user,user_type) -> None:
+        self.user_type = user_type
         self.master = Tk()
         self.messageVar = StringVar(self.master)
         self.sio.connect('http://localhost:3000')
@@ -24,15 +25,24 @@ class Chat():
         labelframeMessages.pack(fill="both", expand="yes") 
 
         self.messagesList = Listbox(labelframeMessages)
+        global msgList
+        msgList = self.messagesList
         self.messagesList.pack(expand=True,fill=BOTH)
-
-        m_file = open('mentors.json')
-        mentees_accounts = json.load(m_file)
-        m_file.close()
-
-        usernames = []
-        for user in mentees_accounts.keys():
-                usernames.append(user)
+        if self.user_type == 'mentee':
+            m_file = open('mentors.json')
+            mentees_accounts = json.load(m_file)
+            m_file.close()
+            usernames = []
+            for x in mentees_accounts:
+                print(x)
+                usernames.append(x)
+        else:
+            m_file = open('mentees.json')
+            mentees_accounts = json.load(m_file)
+            m_file.close()
+            usernames = []
+            for user in mentees_accounts:
+                    usernames.append(user['username'])
         print(usernames)
         self.selectedUser = StringVar()
         labelframeSelect = LabelFrame(self.master,text='Select a Person to chat with')
@@ -61,17 +71,32 @@ class Chat():
         self.master.mainloop()
 
     def get_socket_id(self,evt):
-        f = open('mentors.json')
-        mentors_accounts = json.load(f)
-        f.close()
         selected_user = self.select.get()
-        print(f'selected user {selected_user}')
-        for mentor in mentors_accounts.keys():
-            if mentor == selected_user:
-                socketid = mentors_accounts[selected_user]['SOCKET_ID']
-                print(socketid)
-                self.final_message_reciverVar.set(socketid)
-                break
+        if self.user_type == 'mentee':
+            f = open('mentors.json')
+            mentors_accounts = json.load(f)
+            f.close()
+            
+            print(f'selected user {selected_user}')
+            print(type(mentors_accounts))
+            for mentor in mentors_accounts.keys():
+                if mentor == selected_user:
+                    socketid = mentors_accounts[selected_user]['SOCKET_ID']
+                    print(socketid)
+                    print(mentor)
+                    self.final_message_reciverVar.set(socketid)
+                    break
+        else:
+            m_file = open('mentees.json')
+            mentees_accounts = json.load(m_file)
+            m_file.close()
+            for m in mentees_accounts:
+                if m['username'] == selected_user:
+                    socketid = m['SOCKET_ID']
+                    print(socketid)
+                    self.final_message_reciverVar.set(socketid)
+                    break
+
 
         
 
@@ -93,10 +118,11 @@ class Chat():
         self.messagesList.insert(0,"Hey there")
 
     @sio.on('group_posted')
-    def on_message(self,data):
+    def on_message(data):
         print(data)
-        self.messagesList.insert(self.messagesList.size()+1,'RECEIVED : '+data)
+        #self.messagesList.insert(self.messagesList.size()+1,'RECEIVED : '+data)
         print('I received a message!')
+        msgList.insert(msgList.size()+1,'RECEIVED : '+data)
 
     @sio.on('connection')
     def on_user_joined(self):
