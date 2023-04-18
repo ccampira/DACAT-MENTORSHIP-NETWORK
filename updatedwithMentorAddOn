@@ -350,7 +350,7 @@ def add_new_mentor():
     with open('mentors.json', 'w', newline='') as f:
         json.dump(mentors_accounts, f)
 
-    mentor_create_label.config(text=f'Thank you {mentor_newusername}, your Mentor account has been created!')
+    mentor_create_label.config(text=f'Thank you {mentor_newusername}, your account has been created!')
 
 
 def add_new_mentee():
