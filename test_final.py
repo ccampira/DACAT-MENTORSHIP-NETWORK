@@ -43,7 +43,7 @@ def upload_file():
     profile_pic.save('profile_pic.jpg')
     view = ImageTk.PhotoImage(profile_pic)
     e1= Label(create_box)
-    e1.grid(row=7, column=1)
+    e1.grid(row=6, column=1)
     e1.image = view
     e1['image'] = view
 
@@ -51,7 +51,7 @@ def upload_file():
     buttonavatar = tkinter.Button(mentor_list_box, image=view, width=200, height=200)
     buttonavatar.bind("<Button>", lambda e: NewWindow5(mentor_list_box))
     buttonavatar.grid(row=3, column=0, sticky=E)
-    avatar_label = Label(mentor_list_box, text=f'Computer Information Systems', font=('Bodoni MT', 12),
+    avatar_label = Label(mentor_list_box, text=mentee_q1_entry.get(), font=('Bodoni MT', 12),
                          bg='white')
     avatar_label.grid(row=4, column=0, sticky=E)
 ############################ mentor page - mentee list
@@ -241,9 +241,25 @@ class NewWindow5(Toplevel):
     def __init__(self, master=None):
         super().__init__(master=master)
         self.title("New Mentor Profile")
-        self.geometry("1280x800")
-        label = Label(self, text=mentee_q1_entry.get())
-        label.grid()
+        self.geometry("800x550")
+        new_frame1 = Frame(self, bg='white', width=800, height=550, borderwidth=2, relief=RAISED)
+        new_frame1.grid(row=0, column=0)
+
+        buttonava = tkinter.Button(new_frame1, image=ava)
+        buttonava.grid(row=1, column=0, pady=30, padx=5)
+
+        new_label1 = Label(new_frame1, text=mentor_newusername_textbox.get(), font=('Bodoni MT', 20),
+                           bg='white')
+        new_label1.grid(row=2, column=0, pady=10, padx=5)
+
+
+        label = Label(self, text=mentee_q1_entry.get(), font=('Bodoni MT', 16),
+                           bg='white')
+        label.grid(row=4, column=0, pady=30, padx=20)
+
+        label2 = Label(self, text=mentee_q2_entry.get(), font=('Bodoni MT', 16),
+                           bg='white')
+        label2.grid(row=5, column=0, pady=30, padx=20)
 
 
 def show_time():
@@ -325,7 +341,7 @@ def add_new_mentor():
     with open('mentors.json', 'w', newline='') as f:
         json.dump(mentors_accounts, f)
 
-    mentor_create_label.config(text=f'Thank you {mentor_newusername}, your Mentor account has been created!')
+    mentor_create_label.config(text=f'Thank you {mentor_newusername}, your account has been created!')
 
 
 def add_new_mentee():
@@ -606,6 +622,7 @@ mentee_username = StringVar()
 mentee_password = StringVar()
 mentee_email = StringVar()
 mentor_description = StringVar()
+mentor_description2 = StringVar()
 
 # Mentee Login PAGE
 mentee_login_page = Frame(window, bg='white', width=1280, height=800, borderwidth=1)
@@ -791,12 +808,12 @@ bill2 = bill.resize((new_width8, new_height8), Image.Resampling.LANCZOS)
 bill2.save('bill.jpg')
 gates = ImageTk.PhotoImage(bill2)
 
-# avatar = Image.open('avatar.jpeg')
-# new_width9 = 200
-# new_height9 = 200
-# avatar2 = avatar.resize((new_width9, new_height9), Image.Resampling.LANCZOS)
-# avatar2.save('avatar.jpeg')
-# ava = ImageTk.PhotoImage(avatar2)
+avatar = Image.open('avatar.jpeg')
+new_width9 = 200
+new_height9 = 200
+avatar2 = avatar.resize((new_width9, new_height9), Image.Resampling.LANCZOS)
+avatar2.save('avatar.jpeg')
+ava = ImageTk.PhotoImage(avatar2)
 
 description = "The Rock"
 var = StringVar(window, "1")
@@ -1049,16 +1066,26 @@ email_label.grid(row=3, column=0, pady=5, padx=100, sticky=W, columnspan=2)
 mentor_email_textbox = Entry(create_box, justify=LEFT, font=('Calibri', 12))
 mentor_email_textbox.grid(row=3, column=1, pady=1, padx=100, sticky=W, columnspan=2)
 
-mentor_q1_label = Label(create_box, text='\nPlease provide a brief description for yourself:', justify=CENTER,
+mentor_q1_label = Label(create_box, text='\nPlease enter your major:', justify=CENTER,
                         font=('Bodoni MT', 12),
                         bg='white', fg='black')
-mentor_q1_label.grid(row=4, column=0, pady=5, padx=100, columnspan=3)
+mentor_q1_label.grid(row=4, column=0, pady=2, padx=50, columnspan=3)
 
 blank_label = Label(create_box, text='\n\n\n ', width=60, bg='white', font=('Calibri', 12), fg='black')
 blank_label.grid(row=5, column=0, pady=30, columnspan=3)
 
+mentor_q2_label = Label(create_box, text='\nPlease provide a brief description for yourself:', justify=CENTER,
+                        font=('Bodoni MT', 12),
+                        bg='white', fg='black')
+mentor_q2_label.grid(row=5, column=0, pady=2, padx=50, columnspan=3)
+blank2_label = Label(create_box, text='\n\n\n ', width=60, bg='white', font=('Calibri', 12), fg='black')
+blank2_label.grid(row=6, column=0, pady=30, columnspan=2)
+
+mentee_q2_entry = Entry(create_box, font=('Arial', 12), width=60, textvariable=mentor_description2)
+mentee_q2_entry.place(relwidth=0.9, relheight=0.1, relx=0.05, rely=0.6)
+
 mentee_q1_entry = Entry(create_box, font=('Arial', 12), width=60, textvariable=mentor_description)
-mentee_q1_entry.place(relwidth=0.9, relheight=0.2, relx=0.05, rely=0.4)
+mentee_q1_entry.place(relwidth=0.9, relheight=0.1, relx=0.05, rely=0.4)
 
 upload_button = Button(create_box, text='Upload Profile Picture',
    width=20,command = lambda:upload_file())
@@ -1066,14 +1093,14 @@ upload_button.grid(row=6,column=1)
 
 create_button = Button(create_box, font=("Bodoni MT", 12), text='Create', width=10, command=add_new_mentor, relief=FLAT,
                        bg='#ffa440', fg='white')
-create_button.grid(column=0, row=8, pady=30, columnspan=3, sticky=E)
+create_button.grid(column=0, row=0, pady=30, columnspan=3, sticky=E)
 
 mentor_create_label = Label(create_box, text=' ', width=45, bg='white', font=('Calibri', 12), fg='black')
 mentor_create_label.grid(row=8, column=0, pady=30, columnspan=3)
 
 home_button = Button(create_box, command=mentor_back_to_login, font=('Bodoni MT', 12), text='Back to Login',
                        fg='black', relief="groove")
-home_button.grid(row=8, column=0, columnspan=3, sticky=W)
+home_button.grid(row=0, column=0, columnspan=3, sticky=W)
 
 # blank_label = Label(create_box, text='\n\n\n ', width=60, bg='white', font=('Calibri', 12), fg='black')
 # blank_label.grid(row=5, column=0, pady=30, columnspan=3)
